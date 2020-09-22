@@ -1,0 +1,164 @@
+.projectMainImage
+{
+	margin-left:10%; 
+	margin-right:10%; 
+	padding:0px; 
+	width:80%;
+}
+
+.projectMainImageNoMargin
+{
+	margin: 0px;
+	padding:0px; 
+	width:100%;
+}
+
+.customButton
+{
+	height: 35px;
+	font-family: 'Tahoma';
+	font-weight: bold;
+	color: #ffffff;
+	font-size: 9pt;
+	border-radius: 5px;
+	border-style: none;
+	cursor: pointer;
+}
+
+.redBG
+{
+	background-color: rgb(223,51,51);
+}
+
+.projectBox
+{
+	width: 200px;
+	height: 300px;
+	background-color: #eeeeee;
+	border-color: #cccccc;
+	border-style: solid;
+	border-width: 1px;
+	cursor: pointer;
+	overflow: hidden;
+	display: inline-block;
+	margin-right: 20px;
+}
+
+.projectBox:hover
+{
+	background-color: rgb(255,228,138);
+}
+
+.projectImage
+{
+	height: 50%;
+	width: 100%;
+}
+
+.projectTitle
+{
+	margin-top: 0px;
+    margin-left: 0px;
+	padding: 0px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	float: left;
+    font-family: 'Futura-Bold';
+    font-size: 10pt;    
+	color: #ffffff;
+	width: 100%;
+	text-align: center;
+}
+
+.projectDescription
+{
+	margin: 0px;
+	padding: 10px;
+	font-size: 11pt;
+	font-family: 'Calibri';
+}
+
+.sourceCodeBox
+{
+	width: 100%;
+	height: 300px;
+	background-color: #eeeeee;
+	border-color: #cccccc;
+	border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	display: inline-block;
+	margin-right: 20px;
+}
+
+.sourceCodeTitle
+{
+	margin-top: 0px;
+    margin-left: 0px;
+	padding: 10px;
+	float: left;
+    font-family: 'Calibri';
+    font-size: 10pt;    
+	color: #000000;
+	text-align: left;
+	font-weight: bold;
+	border-color: #cccccc;
+	border-style: solid;
+	border-width: 1px;
+	background-color: #ffffff;
+	display: block;
+}
+
+.sourceCodeInnerBox
+{
+	border-color: #cccccc;
+	border-style: solid;
+	border-width: 1px;
+	margin-top: 38px;
+	height: 100%;
+	background-color: #ffffff;
+	display: block;
+}
+
+.sourceCodeText
+{
+	border-color: #cccccc;
+	border-style: solid;
+	border-width: 1px;
+	padding: 10px;
+	margin: 10px;
+	overflow: auto;
+	font-family: 'Courier New';
+	font-size: 10pt;
+	height: 220px;
+}
+
+.singleLineSourceCode
+{
+	display: block;
+	border-color: #777777;
+	border-style: dashed;
+	border-width: 1px;
+	padding: 10px;
+	margin: 0px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	overflow: auto;
+	font-family: 'Courier New';
+	font-size: 10pt;
+}
+
+.projectTable
+{
+	font-family: 'Calibri';
+	font-size: 11pt;
+	color: #000000;
+}
+
+.projectTable th
+{
+	background-color: rgb(223,51,51);
+	color: #ffffff;
+	font-weight: bold;
+	text-align: left;
+}

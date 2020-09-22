@@ -1,0 +1,21 @@
+// Standard Turing Machine that accepts all strings on {a,b}+ of the form anbn
+
+Q = { q0, q1, q2, q3, q4 } // set of internal states
+F = { q4 } // set of final states
+E = { a, b } // input alphabet
+T = { a, b, x, y, $ } // tape alphabet
+Z = $ // the blank symbol (tape initializer symbol)
+I = q0 // initial state
+
+d(q0,a)=(q1,x,R) // move right
+d(q1,a)=(q1,a,R)
+d(q1,y)=(q1,y,R)
+d(q1,b)=(q2,y,L) // move left
+
+d(q2,y)=(q2,y,L)
+d(q2,a)=(q2,a,L)
+d(q2,x)=(q0,x,R)
+
+d(q0,y)=(q3,y,R)
+d(q3,y)=(q3,y,R)
+d(q3,$)=(q4,$,R)

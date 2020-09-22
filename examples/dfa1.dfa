@@ -1,0 +1,17 @@
+// DFA to accept all strings on {a,b} beginning with "ab"
+
+Q={q0,q1,q2,q3}  // set of internal states
+E={a,b}       // input alphabet
+I=q0         // initial state
+F={q2}       // set of final states
+
+d(q0,a)=q1
+d(q0,b)=q3
+
+d(q1,a)=q3
+d(q1,b)=q2
+
+d(q3,a)=q3
+d(q3,b)=q3
+d(q2,a)=q2
+d(q2,b)=q2

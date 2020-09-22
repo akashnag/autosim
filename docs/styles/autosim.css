@@ -1,0 +1,25 @@
+.autosimMobileMenu
+{
+    color: rgb(223,51,51);
+}
+
+.autosimMobileMenu:hover
+{
+    background-color: rgb(223,51,51);
+}
+
+#MenuBarNav
+{
+    background-color: #ffffff;
+}
+
+#MenuSelector
+{
+    background-color: rgb(223,51,51);
+}
+
+.autosimPageHeader
+{
+	color: #ffffff;
+	background: rgb(223,51,51);
+}

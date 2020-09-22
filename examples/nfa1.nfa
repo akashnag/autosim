@@ -1,0 +1,11 @@
+Q={qA,qB,qC}  // set of internal states
+E={a,b}       // input alphabet
+I=qA         // initial state
+F={qC}       // set of final states
+
+d(qA,a)={ qB }
+d(qA,b)={ qC }
+d(qB,a)={ qC }
+d(qB,b)={ qB }
+d(qC,a)={ qC }
+d(qC,b)={ qC }

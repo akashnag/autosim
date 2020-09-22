@@ -1,0 +1,16 @@
+// NPDA that accepts all strings on {a,b}* where na(w) < nb(w)
+
+Q = { q0, q2 }    // set of internal states
+F = { q2 }        // set of final states
+E = { a, b }        // input alphabet
+T = { a, b, z }        // stack alphabet
+Z = z            // stack start symbol
+I = q0            // initial state
+
+d(q0,a,z)={(q0,az)}
+d(q0,a,a)={(q0,aa)}
+d(q0,a,b)={(q0,~)}
+d(q0,b,z)={(q0,bz)}
+d(q0,b,a)={(q0,~)}
+d(q0,b,b)={(q0,bb)}
+d(q0,~,b)={(q2,~)}

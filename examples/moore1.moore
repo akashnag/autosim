@@ -1,0 +1,15 @@
+// Moore Machine to replace every a with 0 and b with 1
+
+Q={q0,q1}  // set of internal states
+E={a,b}       // input alphabet
+I=q0         // initial state
+T={0,1}
+
+d(q0,a)=q1
+d(q0,b)=q1
+
+d(q1,a)=q0
+d(q1,b)=q0
+
+o(q0)=0
+o(q1)=1

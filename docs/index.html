@@ -1,0 +1,393 @@
+<!doctype html>
+<html>
+    <head>
+        <title>AutoSim - A free automata simulator</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="./styles/general.css"/>
+        <link rel="stylesheet" href="./styles/projects.css"/>
+	<link rel="stylesheet" href="./styles/projectElements.css"/>
+        <link rel="stylesheet" href="./styles/autosim.css"/>
+    </head>
+    
+    <body>
+        <section id="MainContent">
+        		<section id="About">
+				<p class="textHeader">ABOUT</p>
+				<p class="text">
+					AutoSim is a free automata simulator for students and educators. Written in Java,
+					it is a command-line based utility that runs on any OS that supports Java.
+					With AutoSim, you can not only determine the final state or stack/tape contents,
+					you can also trace through the execution states as well, from the initial
+					to the final states. The latest version of AutoSim is 2.0, and it currently supports
+					DFAs, NFAs, Moore machines, Mealy machines, DPDAs, NPDAs, CFGs, as well as Standard Turing Machines.
+					<br/><br/>
+				</p>
+			</section>
+			
+			<section id="Examples">
+				<p class="textHeader">EXAMPLES</p>
+				
+				<section id="Example1">
+					<div class="sourceCodeBox">
+						<span class="sourceCodeTitle">example1.dfa</span>
+						<div class="sourceCodeInnerBox">							
+							<p class="sourceCodeText">
+								// DFA to accept all strings on {a,b} beginning with "ab"<br/>
+								<br/>
+								Q={q0,q1,q2,q3}&emsp;&emsp;// set of internal states<br/>
+								E={a,b}&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;// input alphabet<br/>
+								I=q0&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;// initial state<br/>
+								F={q2}&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;// set of final states<br/>
+								<br/>
+								d(q0,a)=q1<br/>
+								d(q0,b)=q3<br/>
+								<br/>
+								d(q1,a)=q3<br/>
+								d(q1,b)=q2<br/>
+								<br/>
+								d(q3,a)=q3<br/>
+								d(q3,b)=q3<br/>
+								<br/>
+								d(q2,a)=q2<br/>
+								d(q2,b)=q2
+							</p>
+						</div>
+					</div> 
+
+					<span class="singleLineSourceCode">java -jar bin/autosim.jar -dfa -desc projects/example1.dfa -input abaabbab -trace</span>
+					<br/><br/>
+				</section>
+				
+				<section id="Example2">
+					<div class="sourceCodeBox">
+						<span class="sourceCodeTitle">example2.nfa</span>
+						<div class="sourceCodeInnerBox">							
+							<p class="sourceCodeText">
+								// NFA that accepts all strings on {0,1} ending in "101"<br/>
+								<br/>
+								Q={A,B,C,D}&emsp;&emsp;&emsp;&emsp;&nbsp;// set of internal states<br/>
+								E={0,1}&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;// input alphabet<br/>
+								I=A&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;// initial state<br/>
+								F={D}&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;// set of final states<br/>
+								<br/>
+								d(A,0)={A}<br/>
+								d(A,1)={A,B}<br/>
+								<br/>
+								d(B,0)={C}<br/>
+								d(C,1)={D}<br/>
+							</p>
+						</div>
+					</div> 
+
+					<span class="singleLineSourceCode">java -jar bin/autosim.jar -nfa -desc projects/example2.nfa -input 100110101 -trace</span>
+					<br/><br/>
+				</section>
+				
+				<section id="Example3">
+					<div class="sourceCodeBox">
+						<span class="sourceCodeTitle">example3.dpda</span>
+						<div class="sourceCodeInnerBox">							
+							<p class="sourceCodeText">
+								// DPDA that accepts all strings of the form wcw<sup>R</sup> with w &isin; {a,b}<sup>+</sup><br/>
+								<br/>
+								Q={A,B,C}&emsp;&emsp;&emsp;&emsp;&nbsp;// set of internal states<br/>
+								I=A&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;// initial states<br/>
+								F={C}&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;// set of final states<br/>
+								E={a,b}&nbsp;&emsp;&emsp;&emsp;&emsp;&nbsp;// input alphabet<br/>
+								T={a,b,$}&emsp;&emsp;&emsp;&emsp;&nbsp;// stack alphabet<br/>
+								Z=$&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;// stack start symbol<br/>
+								<br/>
+								d(A,a,$)=(A,a$)<br/>
+								d(A,b,$)=(A,b$)<br/>
+								d(A,a,a)=(A,aa)<br/>
+								d(A,a,b)=(A,ab)<br/>
+								d(A,b,a)=(A,ba)<br/>
+								d(A,b,b)=(A,bb)<br/>
+								<br/>
+								d(A,c,$)=(B,$)<br/>
+								d(A,c,a)=(B,a)<br/>
+								d(A,c,b)=(B,b)<br/>
+								<br/>
+								d(B,a,a)=(B,~)&emsp;&emsp;&emsp;&emsp;// ~ represents &lambda;<br/>
+								d(B,b,b)=(B,~)<br/>
+								d(B,~,$)=(C,$)
+							</p>
+						</div>
+					</div> 
+
+					<span class="singleLineSourceCode">java -jar bin/autosim.jar -dpda -desc projects/example3.dpda -input abbcbba -trace</span>
+					<br/><br/>
+				</section>
+		
+				<section id="Example4">
+					<div class="sourceCodeBox">
+						<span class="sourceCodeTitle">example4.npda</span>
+						<div class="sourceCodeInnerBox">							
+							<p class="sourceCodeText">
+								// NPDA that accepts all strings of the form ww<sup>R</sup> with w &isin; {a,b}<sup>+</sup><br/>
+								<br/>
+								Q = { q0, q1, q2 }&emsp;&emsp;&emsp;&emsp;// set of internal states<br/>
+								F = { q2 }&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;// set of final states<br/>
+								E = { a, b }&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;// input alphabet<br/>
+								T = { a, b, $ }&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;// stack alphabet<br/>
+								Z = $&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;// stack start symbol<br/>
+								I = q0&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;// initial state<br/>
+								<br/>
+								d(q0,a,a)={(q0,aa)}<br/>
+								d(q0,b,a)={(q0,ba)}<br/>
+								d(q0,a,b)={(q0,ab)}<br/>
+								d(q0,b,b)={(q0,bb)}<br/>
+								d(q0,a,$)={(q0,a$)}<br/>
+								d(q0,b,$)={(q0,b$)}<br/>
+								<br/>
+								d(q0,~,a)={(q1,a)}&emsp;&emsp;&emsp;&emsp;// ~ represents &lambda;<br/>
+								d(q0,~,b)={(q1,b)}<br/>
+								<br/>
+								d(q1,a,a)={(q1,~)}<br/>
+								d(q1,b,b)={(q1,~)}<br/>
+								<br/>
+								d(q1,~,$)={(q2,$)}
+							</p>
+						</div>
+					</div> 
+
+					<span class="singleLineSourceCode">java -jar bin/autosim.jar -npda -desc projects/example4.npda -input abbbba -trace</span>
+					<br/><br/>
+				</section>
+
+				<section id="Example5">
+					<div class="sourceCodeBox">
+						<span class="sourceCodeTitle">example5.stm</span>
+						<div class="sourceCodeInnerBox">							
+							<p class="sourceCodeText">
+								// Standard Turing Machine that accepts all strings on {a,b}<sup>+</sup> of the form a<sup>n</sup>b<sup>n</sup><br/>
+								<br/>
+								Q = { q0, q1, q2, q3, q4 }&emsp;&emsp;&emsp;&emsp;// set of internal states<br/>
+								F = { q4 }&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;// set of final states<br/>
+								E = { a, b }&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;// input alphabet<br/>
+								T = { a, b, x, y, $ }&emsp;&emsp;&emsp;&emsp;// tape alphabet<br/>
+								Z = $&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;// the blank symbol (tape initializer symbol)<br/>
+								I = q0&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;// initial state<br/>
+								<br/>
+								d(q0,a)=(q1,x,R)&emsp;&emsp;&emsp;&emsp;// move right<br/>
+								d(q1,a)=(q1,a,R)<br/>
+								d(q1,y)=(q1,y,R)<br/>
+								d(q1,b)=(q2,y,L)&emsp;&emsp;&emsp;&emsp;// move left<br/>
+								<br/>
+								d(q2,y)=(q2,y,L)<br/>
+								d(q2,a)=(q2,a,L)<br/>
+								d(q2,x)=(q0,x,R)<br/>
+								<br/>
+								d(q0,y)=(q3,y,R)<br/>
+								d(q3,y)=(q3,y,R)<br/>
+								d(q3,$)=(q4,$,R)
+							</p>
+						</div>
+					</div> 
+
+					<span class="singleLineSourceCode">java -jar bin/autosim.jar -stm -desc projects/example5.stm -input aaabbb -trace</span>
+					<br/><br/>
+				</section>
+
+				<section id="Example6">
+					<div class="sourceCodeBox">
+						<span class="sourceCodeTitle">example6.cfg</span>
+						<div class="sourceCodeInnerBox">							
+							<p class="sourceCodeText">
+								// CFG that accepts all strings of the form a<sup>n</sup>b<sup>n</sup><br/>
+								<br/>
+								V = { S }&emsp;&emsp;&emsp;&emsp;// set of non-terminals<br/>
+								T = { a, b }&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;// set of terminals<br/>
+								S = S&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;// starting symbol<br/>
+								<br/>
+								S -> aSb | ~<br/>								
+							</p>
+						</div>
+					</div> 
+
+					<span class="singleLineSourceCode">java -jar bin/autosim.jar -cfg -desc projects/example6.cfg -input aaabbb -trace</span>
+					<br/><br/>
+				</section>
+			</section>
+
+			<section id="Notes">
+				<p class="textHeader">NOTES</p>
+				<p class="text">
+					The following are the options used for the various types of automata/grammar:<br/>
+					<table class="projectTable" border="1" cellspacing="0" cellpadding="10">
+						<tr>
+							<th>Option</th>
+							<th>Automata</th>
+						</tr>
+				
+						<tr>
+							<td>-dfa</td>
+							<td>Deterministic Finite Automata</td>
+						</tr>
+						
+						<tr>
+							<td>-nfa</td>
+							<td>Non-Deterministic Finite Automata</td>
+						</tr>
+						
+						<tr>
+							<td>-dpda</td>
+							<td>Deterministic Push-Down Automata</td>
+						</tr>
+						
+						<tr>
+							<td>-npda</td>
+							<td>Non-Deterministic Push-Down Automata</td>
+						</tr>
+						
+						<tr>
+							<td>-stm</td>
+							<td>Standard Turing Machine</td>
+						</tr>
+
+						<tr>
+							<td>-cfg</td>
+							<td>Context-Free Grammar</td>
+						</tr>
+					</table>
+				</p>
+
+				<p class="text">
+					Other options used for execution are as follows:<br/>
+					<table class="projectTable" border="1" cellspacing="0" cellpadding="10">
+						<tr>
+							<th>Option</th>
+							<th>Meaning</th>
+						</tr>
+				
+						<tr>
+							<td>-desc</td>
+							<td>This must be followed by the automata/CFG description file</td>
+						</tr>
+						
+						<tr>
+							<td>-input</td>
+							<td>This must be followed by a text-input without spaces or enclosed within quotes if containing spaces</td>
+						</tr>
+						
+						<tr>
+							<td>-data</td>
+							<td>This must be followed by a text-file containing the input to the automata</td>
+						</tr>
+						
+						<tr>
+							<td>-trace</td>
+							<td>OPTIONAL. This option allows you to trace through the states as the automata/derivation-tree as it executes</td>
+						</tr>
+					</table>
+				</p>
+
+				<p class="text">
+					While defining an automaton/grammar, the following symbols are used (case insensitive):<br/>
+					<table class="projectTable" border="1" cellspacing="0" cellpadding="10">
+						<tr>
+							<th>Symbol</th>
+							<th>Applicable to</th>
+							<th>Defines</th>
+						</tr>
+				
+						<tr>
+							<td>Q</td>
+							<td>All (except CFG)</td>
+							<td>The set of internal states</td>
+						</tr>
+						
+						<tr>
+							<td>E</td>
+							<td>All (except CFG)</td>
+							<td>The input alphabet</td>
+						</tr>
+						
+						<tr>
+							<td>F</td>
+							<td>All (except CFG)</td>
+							<td>The set of final states</td>
+						</tr>
+						
+						<tr>
+							<td>I</td>
+							<td>All (except CFG)</td>
+							<td>The initial state</td>
+						</tr>
+						
+						<tr>
+							<td>T</td>
+							<td>DPDA, NPDA, STM, CFG</td>
+							<td>The stack/tape alphabet (PDA, STM) or the set of terminals (CFG)</td>
+						</tr>
+						
+						<tr>
+							<td>Z</td>
+							<td>DPDA, NPDA, STM</td>
+							<td>The stack/tape start symbol</td>
+						</tr>
+						
+						<tr>
+							<td>V</td>
+							<td>CFG</td>
+							<td>The set of non-terminals / variables</td>
+						</tr>
+
+						<tr>
+							<td>S</td>
+							<td>CFG</td>
+							<td>The starting symbol</td>
+						</tr>
+
+						<tr>
+							<td>d</td>
+							<td>All (except CFG)</td>
+							<td>The transition function</td>
+						</tr>
+						
+						<tr>
+							<td>~</td>
+							<td>NFA, DPDA, NPDA, STM, CFG</td>
+							<td>&lambda; or &epsilon;</td>
+						</tr>
+
+						<tr>
+							<td>|</td>
+							<td>CFG</td>
+							<td>To combine multiple production rules of the same non-terminal</td>
+						</tr>
+						
+						<tr>
+							<td>-></td>
+							<td>CFG</td>
+							<td>Signifies &rarr; which is used to separate the left & right-sides of a production rule</td>
+						</tr>
+
+						<tr>
+							<td>*</td>
+							<td>NFA, DPDA, NPDA, STM</td>
+							<td>Any character/label</td>
+						</tr>
+						
+						<tr>
+							<td>//</td>
+							<td>All</td>
+							<td>Comments: anything to the right of // are ignored;<br/>spaces and blank lines are also ignored</td>
+						</tr>
+						
+						<tr>
+							<td>/, comma, space, *, ~, quotes, tabs</td>
+							<td>All</td>
+							<td>These characters cannot be used in the alphabet or input</td>
+						</tr>
+					</table>
+					<br/><br/>
+				</p>
+			</section>
+        </section>
+
+		<footer>&copy; Copyright: Akash Nag. Licensed under the MIT License.</footer>
+    </body>
+</html>
