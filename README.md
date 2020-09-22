@@ -1,7 +1,7 @@
 AutoSim
 =====================
 
-AutoSim is a free automata simulator for students and educators. Written in Java, it is a command-line based utility that runs on any OS that supports Java. With AutoSim, you can not only determine the final state or stack/tape contents, you can also trace through the execution states as well, from the initial to the final states. It currently supports DFAs, NFAs, Moore machines, Mealy machines, DPDAs, NPDAs, CFGs, as well as Standard Turing Machines.
+AutoSim is a free automata simulator for students and educators. Written in Java, it is a command-line based utility that runs on any OS that supports Java. With AutoSim, you can not only determine the final state or stack/tape contents, you can also trace through the execution states as well, from the initial to the final states. It currently supports DFAs, NFAs, Moore machines, Mealy machines, DPDAs, NPDAs, CFGs (derivation), as well as Standard Turing Machines. It also supports NFA to Regex conversion.
 
 ### Compilation
 
